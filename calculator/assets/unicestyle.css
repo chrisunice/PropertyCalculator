@@ -1,0 +1,39 @@
+/* Calculator Container */
+.calculator {
+    position: absolute;
+    width: 40%;
+    height: 90%;
+    margin-left: 30%;
+    margin-top: 2%;
+    background-color: rgb(128, 128, 128);
+    border-radius: 10px;
+}
+
+/* Global Styling */
+.calculator Div {
+    margin: 5px;
+    padding: 5px;
+    //border: 1px solid rgb(0, 0, 0)
+}
+.calculator Div Label {
+    display: inline-block;
+    font-size: 25px;
+}
+.calculator Div Input {
+    display: inline-block;
+    position: absolute;
+    left: 300px;
+    width: auto;
+}
+
+/* This did not work */
+.vacancy-rate Input{
+    position: absolute
+    width: 10%;
+}
+
+/* Separation Line */
+.calculator Hr {
+    //border-color: rgb(255, 255, 255);
+    margin: 0px;
+}

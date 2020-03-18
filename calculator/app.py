@@ -1,11 +1,16 @@
 # --- Import ---
 import dash
-from layout import main_layout
+import layouts
 
+app = dash.Dash("LODAT")
+app.layout = layouts.main_layout()
 
 # --- Main ---
 if __name__ == "__main__":
-    app = dash.Dash("LODAT")
-    app.layout = main_layout()
-    app.run_server(debug=True)
+    app.run_server(
+        debug=True,
+        dev_tools_hot_reload=True,
+        dev_tools_hot_reload_interval=0.1,
+        dev_tools_hot_reload_watch_interval=0.1
+    )
 # end file
