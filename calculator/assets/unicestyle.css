@@ -1,39 +1,157 @@
 /* Calculator Container */
-.calculator {
-    position: absolute;
+#calculator {
+    //position: fixed;
     width: 40%;
+    min-width: 640px;
     height: 90%;
-    margin-left: 30%;
-    margin-top: 2%;
-    background-color: rgb(128, 128, 128);
-    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    background-color: rgb(220, 220, 220);
+    border-style: outset;
+    border-radius: 5px;
 }
 
-/* Global Styling */
-.calculator Div {
+/* Global styling */
+
+.row {
+    position: relative;
     margin: 5px;
     padding: 5px;
-    //border: 1px solid rgb(0, 0, 0)
-}
-.calculator Div Label {
-    display: inline-block;
-    font-size: 25px;
-}
-.calculator Div Input {
-    display: inline-block;
-    position: absolute;
-    left: 300px;
-    width: auto;
 }
 
-/* This did not work */
-.vacancy-rate Input{
-    position: absolute
-    width: 10%;
+.row .label {
+    display: inline-block;
+    font-size: 2vw;
+}
+
+.row .input {
+    display: inline-block;
+    position: absolute;
+    right: 2%;
+    width: 40%;
+    height: auto;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.row .input .amount {
+    display: inline-block;
+    width: 74%;
+    height: inherit;
+    margin-right: 1%;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.row .input .percent {
+    display: inline-block;
+    width: 25%;
+    height: inherit;
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+/* Home Insurance Row */
+.home-insurance {
+    margin: 5px;
+    padding: 5px;
+}
+.home-insurance Label {
+    display: inline-block;
+    font-size: 2vw;
+}
+.home-insurance Input {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 40%;
+    height: auto;
+}
+
+/* Capital Expenditure Row */
+.capital-expenditure {
+    margin: 5px;
+    padding: 5px;
+}
+.capital-expenditure Label {
+    display: inline-block;
+    font-size: 2vw;
+}
+.capital-expenditure Input {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 40%;
+    height: auto;
+}
+
+/* Vacancy Rate Row */
+.vacancy-rate {
+    margin: 5px;
+    padding: 5px;
+}
+.vacancy-rate Label {
+    display: inline-block;
+    font-size: 2vw;
+}
+.vacancy-rate Input {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 40%;
+}
+
+/* Property Mgt Row */
+.property-mgt {
+    margin: 5px;
+    padding: 5px;
+}
+.property-mgt Label {
+    display: inline-block;
+    font-size: 2vw;
+}
+.property-mgt Input {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 40%;
+}
+
+/* Profit Row */
+.profit {
+    margin: 5px;
+    padding: 5px;
+}
+.profit Label {
+    display: inline-block;
+    font-size: 2vw;
+}
+.profit Input {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 40%;
+}
+
+/* Rent Row */
+.rent {
+    margin: 5px;
+    padding: 5px;
+}
+.rent Label {
+    display: inline-block;
+    font-size: 2vw;
+}
+.rent Input {
+    display: inline-block;
+    position: absolute;
+    right: 5%;
+    width: 40%;
 }
 
 /* Separation Line */
-.calculator Hr {
-    //border-color: rgb(255, 255, 255);
+#calculator Hr {
+    border-color: rgb(194, 194, 194);
     margin: 0px;
 }
