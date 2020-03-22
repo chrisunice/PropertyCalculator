@@ -44,34 +44,7 @@ def main_layout():
                             dcc.Input(
                                 id='purchase-price-input',
                                 className='input',
-                                type='text'
-                            )
-                        ]
-                    ),
-                    html.Hr(),
-                    # PROPERTY TAX SECTION #
-                    html.Div(
-                        className='row',
-                        children=[
-                            html.Label(
-                                className='label',
-                                children=['Property Tax']
-                            ),
-                            html.Div(
-                                className='input',
-                                children=[
-                                    dcc.Input(
-                                        id='property-tax-amount-input',
-                                        className='amount'
-                                    ),
-                                    dcc.Input(
-                                        id='property-tax-percent-input',
-                                        className='percent',
-                                        placeholder='%',
-                                        type='number',
-                                        debounce=True
-                                    )
-                                ]
+                                type='text',
                             )
                         ]
                     ),
@@ -94,7 +67,36 @@ def main_layout():
                                     dcc.Input(
                                         id='home-insurance-percent-input',
                                         className='percent',
-                                        placeholder='%'
+                                        placeholder='%',
+                                        readOnly=True
+                                    )
+                                ]
+                            )
+                        ]
+                    ),
+                    html.Hr(),
+                    # PROPERTY TAX SECTION #
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Label(
+                                className='label',
+                                children=['Property Tax']
+                            ),
+                            html.Div(
+                                className='input',
+                                children=[
+                                    dcc.Input(
+                                        id='property-tax-amount-input',
+                                        className='amount',
+                                    ),
+                                    dcc.Input(
+                                        id='property-tax-percent-input',
+                                        className='percent',
+                                        placeholder='%',
+                                        type='number',
+                                        min=0, max=100, step=0.1,
+                                        debounce=False
                                     )
                                 ]
                             )

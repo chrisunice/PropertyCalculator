@@ -37,7 +37,7 @@
 
 .row .input .amount {
     display: inline-block;
-    width: 74%;
+    width: 69%;
     height: inherit;
     margin-right: 1%;
     text-align: center;
@@ -46,7 +46,7 @@
 
 .row .input .percent {
     display: inline-block;
-    width: 25%;
+    width: 30%;
     height: inherit;
     text-align: center;
     font-size: 1.5vw;
