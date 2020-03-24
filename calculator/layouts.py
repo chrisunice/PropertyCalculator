@@ -1,5 +1,5 @@
 """
-Author: Chris Unice
+Author:         Chris Unice
 Description:    This script is to define all the layouts (pages) that will
                 be used by the application.
 """
@@ -24,7 +24,7 @@ def main_layout():
                                 children=['Capital']
                             ),
                             dcc.Input(
-                                id='capital-input',
+                                id='capital',
                                 className='input',
                                 type='text',
                                 required=True,
@@ -42,9 +42,23 @@ def main_layout():
                                 children=['Purchase Price']
                             ),
                             dcc.Input(
-                                id='purchase-price-input',
+                                id='purchase-price',
                                 className='input',
-                                type='text',
+                            )
+                        ]
+                    ),
+                    html.Hr(),
+                    # PRINCIPLE AND INTEREST #
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Label(
+                                className='label',
+                                children=['Principle and Interest'],
+                            ),
+                            dcc.Input(
+                                id='principle-interest',
+                                className='input',
                             )
                         ]
                     ),
@@ -58,17 +72,20 @@ def main_layout():
                                 children=['Home Insurance']
                             ),
                             html.Div(
-                                className='input',
+                                className='input-container',
                                 children=[
                                     dcc.Input(
-                                        id='home-insurance-amount-input',
+                                        id='home-insurance-amount',
                                         className='amount'
                                     ),
                                     dcc.Input(
-                                        id='home-insurance-percent-input',
+                                        id='home-insurance-percent',
                                         className='percent',
-                                        placeholder='%',
                                         readOnly=True
+                                    ),
+                                    html.Label(
+                                        className='percent-symbol',
+                                        children=['%']
                                     )
                                 ]
                             )
@@ -84,68 +101,171 @@ def main_layout():
                                 children=['Property Tax']
                             ),
                             html.Div(
-                                className='input',
+                                className='input-container',
                                 children=[
                                     dcc.Input(
-                                        id='property-tax-amount-input',
+                                        id='property-tax-amount',
                                         className='amount',
                                     ),
                                     dcc.Input(
-                                        id='property-tax-percent-input',
+                                        id='property-tax-percent',
                                         className='percent',
-                                        placeholder='%',
                                         type='number',
                                         min=0, max=100, step=0.1,
-                                        debounce=False
+                                        debounce=False,
+                                        required=True
+                                    ),
+                                    html.Label(
+                                        className='percent-symbol',
+                                        children=['%']
                                     )
                                 ]
                             )
                         ]
                     ),
-                    # html.Hr(),
-                    # html.Div(
-                    #     id='capital-expenditure-container',
-                    #     className='capital-expenditure',
-                    #     children=[
-                    #         html.Label('Capital Expenditure'),
-                    #         dcc.Input(),
-                    #     ]
-                    # ),
-                    # html.Hr(),
-                    # html.Div(
-                    #     id='vacancy-rate-container',
-                    #     className='vacancy-rate',
-                    #     children=[
-                    #         html.Label('Vacancy Rate'),
-                    #         dcc.Input()
-                    #     ]
-                    # ),
-                    # html.Hr(),
-                    # html.Div(
-                    #     id='property-mgt-container',
-                    #     className='property-mgt',
-                    #     children=[
-                    #         html.Label('Property Management'),
-                    #         dcc.Input()
-                    #     ]
-                    # ),
-                    # html.Hr(),
-                    # html.Div(
-                    #     id='profit-container',
-                    #     className='profit',
-                    #     children=[
-                    #         html.Label('Profit'),
-                    #         dcc.Input()
-                    #     ]
-                    # ),
-                    # html.Hr(),
-                    # html.Div(
-                    #     id='rent-container',
-                    #     className='rent',
-                    #     children=[
-                    #         html.Label('Rent')
-                    #     ]
-                    # )
+                    html.Hr(),
+                    # CAPITAL EXPENDITURE #
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Label(
+                                className='label',
+                                children=['Capital Expenditure']
+                            ),
+                            html.Div(
+                                className='input-container',
+                                children=[
+                                    dcc.Input(
+                                        id='cap-ex-amount',
+                                        className='amount',
+                                    ),
+                                    dcc.Input(
+                                        id='cap-ex-percent',
+                                        className='percent',
+                                        type='number',
+                                        min=0, max=100, step=0.1,
+                                        debounce=False,
+                                        required=True
+                                    ),
+                                    html.Label(
+                                        className='percent-symbol',
+                                        children=['%']
+                                    )
+                                ]
+                            )
+                        ]
+                    ),
+                    html.Hr(),
+                    # VACANCY RATE #
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Label(
+                                className='label',
+                                children=['Vacancy Rate'],
+                            ),
+                            html.Div(
+                                className='input-container',
+                                children=[
+                                    dcc.Input(
+                                        id='vacancy-rate-amount',
+                                        className='amount',
+                                    ),
+                                    dcc.Input(
+                                        id='vacancy-rate-percent',
+                                        className='percent',
+                                        type='number',
+                                        min=0, max=100, step=0.1,
+                                        debounce=False,
+                                        required=True
+                                    ),
+                                    html.Label(
+                                        className='percent-symbol',
+                                        children=['%']
+                                    )
+                                ]
+                            )
+                        ]
+                    ),
+                    html.Hr(),
+                    # PROPERTY MANAGEMENT #
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Label(
+                                className='label',
+                                children=['Property Management']
+                            ),
+                            html.Div(
+                                className='input-container',
+                                children=[
+                                    dcc.Input(
+                                        id='property-mgt-amount',
+                                        className='amount',
+                                    ),
+                                    dcc.Input(
+                                        id='property-mgt-percent',
+                                        className='percent',
+                                        type='number',
+                                        min=0, max=100, step=0.1,
+                                        debounce=False,
+                                        required=True
+                                    ),
+                                    html.Label(
+                                        className='percent-symbol',
+                                        children=['%']
+                                    )
+                                ]
+                            )
+                        ]
+                    ),
+                    html.Hr(),
+                    # PROFIT MARGIN #
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Label(
+                                className='label',
+                                children=['Profit']
+                            ),
+                            html.Div(
+                                className='input-container',
+                                children=[
+                                    dcc.Input(
+                                        id='profit-amount',
+                                        className='amount',
+                                    ),
+                                    dcc.Input(
+                                        id='profit-percent',
+                                        className='percent',
+                                        type='number',
+                                        min=0, max=100, step=0.1,
+                                        debounce=False,
+                                        required=True
+                                    ),
+                                    html.Label(
+                                        className='percent-symbol',
+                                        children=['%']
+                                    )
+                                ]
+                            )
+                        ]
+                    ),
+                    html.Hr(),
+                    # REQUIRED RENT #
+                    html.Div(
+                        className='row',
+                        children=[
+                            html.Label(
+                                className='label',
+                                children=['Rent']
+                            ),
+                            dcc.Input(
+                                className='input',
+                                id='rent'
+                            )
+                        ]
+                    )
                 ]
             )
         ]

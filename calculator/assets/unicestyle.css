@@ -1,4 +1,4 @@
-/* Calculator Container */
+/* HTML div styling for calculator container */
 #calculator {
     //position: fixed;
     width: 40%;
@@ -12,39 +12,51 @@
     border-radius: 5px;
 }
 
-/* Global styling */
-
+/* HTML div styling for the entire row */
 .row {
     position: relative;
     margin: 5px;
     padding: 5px;
 }
 
+/* HTML label styling */
 .row .label {
     display: inline-block;
     font-size: 2vw;
 }
 
+/* Dash regular input styling */
 .row .input {
+    position: absolute;
+    right: 2%;
+    width: 40%;
+    height: auto;
+    font-size: 1.5vw;
+    text-align: center;
+}
+
+/* HTML div styling for the input container with 2 input fields */
+.row .input-container {
     display: inline-block;
     position: absolute;
     right: 2%;
     width: 40%;
     height: auto;
-    text-align: center;
     font-size: 1.5vw;
 }
 
-.row .input .amount {
+/* Dash input styling for amount */
+.row .input-container .amount {
     display: inline-block;
-    width: 69%;
+    width: 60%;
     height: inherit;
     margin-right: 1%;
     text-align: center;
     font-size: 1.5vw;
 }
 
-.row .input .percent {
+/* Dash input styling for percent */
+.row .input-container .percent {
     display: inline-block;
     width: 30%;
     height: inherit;
@@ -52,105 +64,13 @@
     font-size: 1.5vw;
 }
 
-/* Home Insurance Row */
-.home-insurance {
-    margin: 5px;
-    padding: 5px;
-}
-.home-insurance Label {
+/* HTML label styling for percent symbol */
+.row .input-container .percent-symbol {
     display: inline-block;
-    font-size: 2vw;
-}
-.home-insurance Input {
-    display: inline-block;
-    position: absolute;
-    right: 5%;
-    width: 40%;
-    height: auto;
+    margin-left: 1.5%;
 }
 
-/* Capital Expenditure Row */
-.capital-expenditure {
-    margin: 5px;
-    padding: 5px;
-}
-.capital-expenditure Label {
-    display: inline-block;
-    font-size: 2vw;
-}
-.capital-expenditure Input {
-    display: inline-block;
-    position: absolute;
-    right: 5%;
-    width: 40%;
-    height: auto;
-}
-
-/* Vacancy Rate Row */
-.vacancy-rate {
-    margin: 5px;
-    padding: 5px;
-}
-.vacancy-rate Label {
-    display: inline-block;
-    font-size: 2vw;
-}
-.vacancy-rate Input {
-    display: inline-block;
-    position: absolute;
-    right: 5%;
-    width: 40%;
-}
-
-/* Property Mgt Row */
-.property-mgt {
-    margin: 5px;
-    padding: 5px;
-}
-.property-mgt Label {
-    display: inline-block;
-    font-size: 2vw;
-}
-.property-mgt Input {
-    display: inline-block;
-    position: absolute;
-    right: 5%;
-    width: 40%;
-}
-
-/* Profit Row */
-.profit {
-    margin: 5px;
-    padding: 5px;
-}
-.profit Label {
-    display: inline-block;
-    font-size: 2vw;
-}
-.profit Input {
-    display: inline-block;
-    position: absolute;
-    right: 5%;
-    width: 40%;
-}
-
-/* Rent Row */
-.rent {
-    margin: 5px;
-    padding: 5px;
-}
-.rent Label {
-    display: inline-block;
-    font-size: 2vw;
-}
-.rent Input {
-    display: inline-block;
-    position: absolute;
-    right: 5%;
-    width: 40%;
-}
-
-/* Separation Line */
+/* HTML horizontal line styling */
 #calculator Hr {
     border-color: rgb(194, 194, 194);
     margin: 0px;
