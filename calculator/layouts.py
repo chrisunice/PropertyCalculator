@@ -44,13 +44,29 @@ def left_column():
                                 id='loan-apr',
                                 className='percent',
                                 type='number',
-                                min=0, max=100, step=0.1,
+                                min=0, max=100, step=0.025,
                             ),
                             html.Label(
                                 className='percent-symbol',
                                 children=['%']
                             )
                         ]
+                    )
+                ]
+            ),
+            html.Hr(),
+            # HOME OWNERS ASSOCIATION SECTION #
+            html.Div(
+                className='row',
+                children=[
+                    html.Label(
+                        className='label',
+                        children=['HOA']
+                    ),
+                    dcc.Input(
+                        id='hoa-input',
+                        className='input',
+                        type='text',
                     )
                 ]
             ),
@@ -70,7 +86,7 @@ def left_column():
                                 id='property-tax-rate',
                                 className='percent',
                                 type='number',
-                                min=0, max=100, step=0.1,
+                                min=0, max=100, step=0.01,
                             ),
                             html.Label(
                                 className='percent-symbol',
@@ -178,6 +194,7 @@ def left_column():
                             dcc.RadioItems(
                                 id='desired-profit-radio-items',
                                 options=[{'label': x, 'value': x} for x in ['$', '%']],
+                                value='$'
                             )
                         ]
                     )
@@ -203,7 +220,7 @@ def right_column():
                     html.Label(
                         id='purchase-price',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -218,7 +235,7 @@ def right_column():
                     html.Label(
                         id='down-payment',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -233,7 +250,22 @@ def right_column():
                     html.Label(
                         id='principle-interest',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
+                    )
+                ]
+            ),
+            # HOME OWNERS ASSOCIATION #
+            html.Div(
+                className='row',
+                children=[
+                    html.Label(
+                        className='label',
+                        children=['HOA:'],
+                    ),
+                    html.Label(
+                        id='hoa-output',
+                        className='output',
+                        children=['_' * 10]
                     )
                 ]
             ),
@@ -248,7 +280,7 @@ def right_column():
                     html.Label(
                         id='home-insurance',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -263,7 +295,7 @@ def right_column():
                     html.Label(
                         id='property-tax',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -278,7 +310,7 @@ def right_column():
                     html.Label(
                         id='mortgage',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -293,7 +325,7 @@ def right_column():
                     html.Label(
                         id='cap-ex',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -308,7 +340,7 @@ def right_column():
                     html.Label(
                         id='vacancy',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -323,7 +355,7 @@ def right_column():
                     html.Label(
                         id='property-mgt',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             ),
@@ -338,11 +370,10 @@ def right_column():
                     html.Label(
                         id='profit-margin',
                         className='output',
-                        children=['_________']
+                        children=['_'*10]
                     )
                 ]
             )
-            # REQUIRED RENT #
         ],
     )
     return container
@@ -374,7 +405,7 @@ def main_layout():
                             right_column()
                         ]
                     ),
-                    # Buttons #
+                    # Buttons & Output #
                     html.Div(
                         className='footer',
                         children=[
@@ -388,6 +419,14 @@ def main_layout():
                                 className='button',
                                 children=['Reset']
                             ),
+                            html.Label(
+                                id='required-rent-label',
+                                children=['Required Rent']
+                            ),
+                            html.Label(
+                                id='required-rent-amount',
+                                children=['_'*10]
+                            )
                         ]
                     )
 

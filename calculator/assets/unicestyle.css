@@ -6,8 +6,8 @@
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1%;
-    background-color: rgb(220, 220, 220);
+    margin-top: 2%;
+    background-color: rgb(245, 245, 245);
     border-style: outset;
     border-radius: 5px;
 }
@@ -21,7 +21,7 @@
 .title {
     position: relative;
     margin: 0; padding 0;
-    background: rgb(51, 153, 255);
+    background: rgb(173, 216, 230);
 }
 /* HTML label styling for title text */
 .title .title-text {
@@ -157,7 +157,7 @@
 .right-column .row .output {
     display: inline-block;
     position: absolute;
-    left: 70%;
+    left: 67.5%;
     font-size: 1.25vw;
 }
 
@@ -166,13 +166,35 @@
 ///// FOOTER /////
 //////////////////
 */
+/* footer container */
+.footer {
+    position: relative;
+    margin-top: 1%; margin-bottom: 1%;
+}
 /* general button */
 .footer .button {
     background: white;
+    font-size: 1vw;
     border: 1px solid rgb(105, 105, 105);
 }
+/* calculate button specifics */
 .footer #calculate-button {
-    margin-left: 10%;
+    margin-left: 7.5%;
+    margin-right: 2px;
+}
+/* rent label */
+.footer #required-rent-label {
+    display: inline-block;
+    position: relative;
+    left: 10%;
+    font-size: 1.5vw; font-weight: bold;
+}
+/* rent amount */
+.footer #required-rent-amount {
+    display: inline-block;
+    position: relative;
+    left: 12.5%;
+    font-size: 1.5vw; font-weight: bold;
 }
 
 

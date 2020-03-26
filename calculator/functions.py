@@ -6,40 +6,53 @@ Description:    This script contains all the helper functions used by the applic
 import numpy as np
 
 
+# --- Classes ---
+class Breakdown(object):
+    def __init__(self, capital, loan_apr, hoa, property_tax_rate, cap_ex_rate, vacancy_rate,
+                 property_mgt_rate, desired_profit, profit_is_percent=True):
+        # Convert input percents to decimals
+        loan_apr, property_tax_rate, cap_ex_rate, vacancy_rate, property_mgt_rate = map(
+            lambda x: x/100.,
+            [loan_apr, property_tax_rate, cap_ex_rate, vacancy_rate, property_mgt_rate]
+        )
+        if profit_is_percent:
+            desired_profit = desired_profit / 100.
+
+        # Instance attributes
+        self.capital = capital
+        self.loan_apr = loan_apr
+        self.hoa = float(hoa)
+        self.property_tax_rate = property_tax_rate
+        self.cap_ex_rate = cap_ex_rate
+        self.vacancy_rate = vacancy_rate
+        self.property_mgt_rate = property_mgt_rate
+        self.desired_profit = desired_profit
+        self.profit_is_percent = profit_is_percent
+
+        # Calculated attributes
+        self.purchase_price = float(self.capital) / 0.2
+        self.down_payment = self.purchase_price * 0.2
+        # monthly
+        self.home_insurance = (1200/456000 * self.purchase_price) / 12
+        self.property_tax = (self.property_tax_rate * self.purchase_price) / 12
+        self.principle_interest = -1 * np.pmt(self.loan_apr/12, 360, (self.purchase_price-self.down_payment))
+        self.mortgage = self.principle_interest + self.hoa + self.home_insurance + self.property_tax
+        if self.profit_is_percent:
+            rate_sum = self.cap_ex_rate + self.vacancy_rate + self.property_mgt_rate + self.desired_profit
+            self.required_rent = self.mortgage / (1 - rate_sum)
+            self.profit_margin = self.required_rent * self.desired_profit
+        else:
+            rate_sum = self.cap_ex_rate + self.vacancy_rate + self.property_mgt_rate
+            self.required_rent = (self.mortgage + self.desired_profit) / (1 - rate_sum)
+            self.profit_margin = self.desired_profit
+        self.cap_ex = self.required_rent * self.cap_ex_rate
+        self.vacancy = self.required_rent * self.vacancy_rate
+        self.property_mgt = self.required_rent * self.property_mgt_rate
+
+        return None
+
+
 # --- Functions ---
 def format2number(x):
     return float(x.replace('$', '').replace(',', ''))
-
-
-def calculate_breakdown(capital, tax_rate, cap_rate, vac_rate, mgt_rate, profit_rate):
-    # Check rates to be less than 1
-    tax_rate, cap_rate, vac_rate, mgt_rate, profit_rate = map(
-        lambda x: x/100. if x >= 1 else x,
-        [tax_rate, cap_rate, vac_rate, mgt_rate, profit_rate]
-    )
-
-    # Hard code the loan APR for now
-    loan_rate = 0.05
-
-    # Parameters
-    pp = capital / 0.2                          # purchase price
-    loan = pp * 0.8                             # amount financed
-    ins = (1200/456000 * pp)/12                 # home insurance
-    re_tax = (tax_rate * pp)/12                 # real estate tax
-    pi = -1*np.pmt(loan_rate/12, 360, loan)     # principle and interest
-    m = pi + ins + re_tax                       # mortgage
-
-    # Rent 1: based on getting 10% profit
-    rent_1 = m / (1-(cap_rate + vac_rate + mgt_rate + profit_rate))
-    # Rent 2: based on getting $100 profit
-    rent_2 = (m + 100) / (1-(cap_rate + vac_rate + mgt_rate))
-    # True Rent: we want the lesser of the two options
-    rent = np.min([rent_1, rent_2])
-
-    cap_amount = rent * cap_rate        # capital expenditure
-    vac_amount = rent * vac_rate        # vacancy rate
-    mgt_amount = rent * mgt_rate        # property management
-    profit_amount = rent - (m + cap_amount + vac_amount + mgt_amount)   # profit margin
-
-    return [cap_amount, vac_amount, mgt_amount, profit_amount, rent]
 # end file
