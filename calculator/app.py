@@ -9,11 +9,15 @@ from dash.dependencies import Output, Input, State
 import locale
 import layouts
 import functions
+from datetime import datetime
+import numpy as np
 
 # --- Application set up ---
 app = dash.Dash("LODAT")
 app.layout = layouts.main_layout()
+
 locale.setlocale(locale.LC_ALL, '')
+app_launch_time = datetime.timestamp(datetime.now())
 
 
 # --- Callbacks ---
@@ -33,8 +37,8 @@ locale.setlocale(locale.LC_ALL, '')
         Output('required-rent-amount', 'children'),
     ],  # outputs
     [
-        Input('calculate-button', 'n_clicks'),
-        Input('reset-button', 'n_clicks')
+        Input('calculate-button', 'n_clicks_timestamp'),
+        Input('reset-button', 'n_clicks_timestamp')
     ],  # inputs
     [
         State('capital', 'value'),
@@ -48,20 +52,29 @@ locale.setlocale(locale.LC_ALL, '')
         State('desired-profit-radio-items', 'value')
     ]   # states
 )
-def calculate_button_event(calculate_event, reset_event, capital, apr, hoa, tax_rate,
+def calculate_button_event(calculate_timestamp, reset_timestamp, capital, apr, hoa, tax_rate,
                            cap_rate, vac_rate, mgt_rate, profit, profit_type):
-    # Waiting for user inputs
-    args = [capital, apr, hoa, tax_rate, cap_rate,
-            vac_rate, mgt_rate, profit, profit_type]
-    if None in args:
+    # Do nothing if no button has been pushed
+    if calculate_timestamp is None and reset_timestamp is None:
         raise dash.exceptions.PreventUpdate
+    # Do nothing if there aren't any inputs
+    elif None in [capital, apr, hoa, tax_rate, cap_rate, vac_rate, mgt_rate, profit]:
+        raise dash.exceptions.PreventUpdate
+    # Calculate button has been pushed & Reset button has not
+    elif calculate_timestamp is None and reset_timestamp is not None:
+        calculate_timestamp = app_launch_time
+    # Reset button has been pushed & Calculate button has not
+    elif reset_timestamp is None and calculate_timestamp is not None:
+        reset_timestamp = app_launch_time
+    # Both buttons have been pushed at least once
+    elif np.isscalar(calculate_timestamp) and np.isscalar(reset_timestamp):
+        pass
+    # Catch all
+    else:
+        raise ValueError('Unhandled button properties {} and {}'.format(calculate_timestamp, reset_timestamp))
 
-    # Reset outputs
-    if reset_event is not None:
-        return ['_'*10 for i in range(12)]
-
-    # Populate outputs
-    if calculate_event is not None:
+    # Calculate button was pushed last
+    if calculate_timestamp > reset_timestamp:
         if profit_type == '%':
             profit_is_percent = True
         else:
@@ -76,6 +89,9 @@ def calculate_button_event(calculate_event, reset_event, capital, apr, hoa, tax_
              breakdown.required_rent]
         ))
         return results
+    # Reset button was pushed last
+    elif reset_timestamp > calculate_timestamp:
+        return ['_'*10 for i in range(12)]
 
 
 @app.callback(
@@ -88,15 +104,16 @@ def calculate_button_event(calculate_event, reset_event, capital, apr, hoa, tax_
         Output('vacancy-rate', 'value'),
         Output('property-mgt-rate', 'value'),
         Output('desired-profit', 'value'),
+        Output('calculate-button', 'n_clicks'),
         Output('desired-profit-radio-items', 'value')
-    ],
+    ],  # outputs
     [Input('reset-button', 'n_clicks')]
 )
 def reset_button_event(n_clicks):
     if n_clicks is None:
         raise dash.exceptions.PreventUpdate
     else:
-        return [None for i in range(8)] + ['$']
+        return ['' for i in range(8)] + [0, '$']
 
 
 # --- Main ---

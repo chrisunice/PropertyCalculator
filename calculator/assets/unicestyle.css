@@ -20,13 +20,14 @@
 /* HTML div styling for title container */
 .title {
     position: relative;
-    margin: 0; padding 0;
+    margin: 0;
     background: rgb(173, 216, 230);
 }
 /* HTML label styling for title text */
 .title .title-text {
     text-align: center;
-    font-size: 2vw;
+    padding: 0px;
+    font-size: 2em;
 }
 
 /*
@@ -64,8 +65,8 @@
 /* row labels */
 .left-column .row .label {
     display: inline-block;
-    font-size: 1.25vw;
-    margin-left: 3%;
+    font-size: 1.2em;
+    margin-left: 2%; margin-top: 2%;
 }
 /* row inputs (single input) */
 .row .input {
@@ -74,7 +75,7 @@
     bottom: 0;
     width: 45%;
     height: 100%;
-    font-size: 1.25vw;
+    font-size: 1em;
     text-align: center;
 }
 /* row input container (multiple fields) */
@@ -85,7 +86,7 @@
     bottom: 0;
     width: 45%;
     height: 100%;
-    font-size: 1.25vw;
+    font-size: 1em;
 }
 /* percent input field */
 .row .input-container .percent {
@@ -116,7 +117,7 @@
     right: 0;
     width: auto;
     height: inherit;
-    font-size: 1vw;
+    font-size: 1em;
 }
 
 /* HTML horizontal line styling */
@@ -150,15 +151,15 @@
 .right-column .row .label {
     display: inline-block;
     position: absolute;
-    left: 10%;
-    font-size: 1.25vw;
+    left: 5%;
+    font-size: 1.2em;
 }
 /* row outputs */
 .right-column .row .output {
     display: inline-block;
     position: absolute;
     left: 67.5%;
-    font-size: 1.25vw;
+    font-size: 1em;
 }
 
 /*
@@ -174,7 +175,7 @@
 /* general button */
 .footer .button {
     background: white;
-    font-size: 1vw;
+    font-size: 1em;
     border: 1px solid rgb(105, 105, 105);
 }
 /* calculate button specifics */
@@ -187,14 +188,14 @@
     display: inline-block;
     position: relative;
     left: 10%;
-    font-size: 1.5vw; font-weight: bold;
+    font-size: 1.2em; font-weight: bold;
 }
 /* rent amount */
 .footer #required-rent-amount {
     display: inline-block;
     position: relative;
     left: 12.5%;
-    font-size: 1.5vw; font-weight: bold;
+    font-size: 1.2em; font-weight: bold;
 }
 
 
