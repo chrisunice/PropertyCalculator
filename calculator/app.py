@@ -4,8 +4,6 @@ Description:    This script controls building and launching the app. All functio
                 are contained in this file
 """
 # --- Import ---
-import os
-import sys
 import locale
 import numpy as np
 from datetime import datetime
