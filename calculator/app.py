@@ -4,13 +4,17 @@ Description:    This script controls building and launching the app. All functio
                 are contained in this file
 """
 # --- Import ---
+import os
+import sys
+import locale
+import numpy as np
+from datetime import datetime
+
 import dash
 from dash.dependencies import Output, Input, State
-import locale
-import layouts
-import functions
-from datetime import datetime
-import numpy as np
+
+from lib import layouts, functions
+
 
 # --- Application set up ---
 app = dash.Dash("LODAT")
